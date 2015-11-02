@@ -5,7 +5,9 @@ var xtend = require('xtend')
 var formats = require('./formats')
 
 var get = function(obj, additionalSchemas, ptr) {
-  if (/^https?:\/\//.test(ptr)) return null
+  if (/^https?:\/\//.test(ptr)) {
+      return additionalSchemas[ptr] || null;
+  }
 
   var visit = function(sub) {
     if (sub && sub.id === ptr) return sub
