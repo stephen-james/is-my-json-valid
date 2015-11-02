@@ -6,7 +6,9 @@ var formats = require('./formats')
 
 var get = function(obj, additionalSchemas, ptr) {
   if (/^https?:\/\//.test(ptr)) {
-      return additionalSchemas[ptr] || null;
+      var absoluteUri = ptr;
+      ptr = ptr.split('#')[1];
+      return jsonpointer.get(additionalSchemas[absoluteUri], ptr) || null;
   }
 
   var visit = function(sub) {
