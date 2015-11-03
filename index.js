@@ -5,7 +5,7 @@ var xtend = require('xtend')
 var formats = require('./formats')
 
 var get = function(obj, additionalSchemas, ptr) {
-  if (/^https?:\/\//.test(ptr)) {
+  if (/^[a-zA-Z]*?:\/\//.test(ptr)) {
       var absoluteUri = ptr;
       ptr = ptr.split('#')[1];
       return jsonpointer.get(additionalSchemas[absoluteUri], ptr) || null;
