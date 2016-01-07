@@ -6,17 +6,17 @@ var formats = require('./formats')
 
 var get = function(obj, additionalSchemas, ptr) {
   if (/^[a-zA-Z]*?:\/\//.test(ptr)) {
-      var absoluteUri = ptr;
-      var result = undefined;
-      ptr = ptr.split('#')[1];
+      var absoluteUri = ptr
+      var result = undefined
+      ptr = ptr.split('#')[1]
 
       try {
-          result = jsonpointer.get(additionalSchemas[absoluteUri], ptr)
+          result = jsonpointer.get(additionalSchemas[absoluteUri], ptr || '')
       } catch (e) {
           console.log('json-pointer could not find additional schema with uri \'' + absoluteUri + '\'.' +
-            '(schemas available[' + Object.keys(additionalSchemas).join(', ') + '])');
+            '(schemas available[' + Object.keys(additionalSchemas).join(', ') + '])')
       } finally {
-          return result;
+          return result
       }
   }
 
